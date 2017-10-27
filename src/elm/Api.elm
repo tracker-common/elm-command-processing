@@ -17,6 +17,7 @@ type CommandResult
 
 type alias CommandCreateResponse =
     { result : CommandResult
+    , staleCommands : List Command
     }
 
 
@@ -45,9 +46,10 @@ fetchCommandsCmd projectVersion =
 
 commandCreateResponseDecoder : Decode.Decoder CommandCreateResponse
 commandCreateResponseDecoder =
-    Decode.at [ "data" ] <|
+    Decode.field "data" <|
         Decode.succeed CommandCreateResponse
             |: (Decode.field "result" Decode.string |> Decode.andThen toCommandResult)
+            |: (Decode.field "stale_commands" commandsDecoder)
 
 
 toCommandResult : String -> Decode.Decoder CommandResult
@@ -75,14 +77,12 @@ toCommandResult commandResult =
             Decode.fail <| "Badly formed command_create_response.result. Received:" ++ commandResult
 
 
+commandsDecoder : Decode.Decoder (List Command)
+commandsDecoder =
+    Decode.list commandDecoder
 
---
---commandsDecoder : Decode.Decoder (List Command)
---commandsDecoder =
---    Decode.list commandDecoder
---
---
---commandDecoder : Decode.Decoder Command
---commandDecoder =
---    Decode.succeed Command
---        |: Decode.field "text" Decode.string
+
+commandDecoder : Decode.Decoder Command
+commandDecoder =
+    Decode.succeed Command
+        |: (Decode.at [ "project", "version" ] Decode.int)

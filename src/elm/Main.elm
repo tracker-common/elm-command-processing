@@ -39,7 +39,7 @@ type alias Model =
 model : Model
 model =
     { stories = [ { name = "My story, morning glory" }, { name = "It was the best of times..." } ]
-    , projectVersion = 0
+    , projectVersion = 300
     }
 
 
@@ -73,13 +73,13 @@ update msg model =
                         thing =
                             Debug.log "RESULT!!!!!!!!!!" commandCreateResponse
 
-                        --                        projectVersion = case commandCreateResponse.result
-                        --                            Stale ->
-                        --                            -- get version from command list
-                        --                            _ ->
-                        --                             model.projectVersion
+                        projectVersion =
+                            List.reverse commandCreateResponse.staleCommands
+                                |> List.head
+                                |> Maybe.map (.projectVersion)
+                                |> Maybe.withDefault model.projectVersion
                     in
-                        ( model, Cmd.none )
+                        ( { model | projectVersion = projectVersion }, Cmd.none )
 
                 Err string ->
                     let
