@@ -94,6 +94,7 @@ resultDecoder =
         |: (Decode.maybe (Decode.field "description" Decode.string))
         |: (Decode.maybe (Decode.field "current_state" Decode.string))
         |: (Decode.maybe (Decode.field "text" Decode.string))
+        |: (Decode.maybe (Decode.field "story_id" Decode.int))
 
 
 toCommandResultKind : String -> Decode.Decoder CommandResultKind

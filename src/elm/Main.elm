@@ -109,13 +109,23 @@ view model =
             else
                 []
 
+        renderStoryComment ( id, comment ) =
+            li [] [ text comment.text ]
+
+        renderStoryComments : Int -> List (Html Msg)
+        renderStoryComments storyId =
+            model.comments
+                |> Dict.toList
+                |> List.filter (\( commentId, comment ) -> comment.storyId == storyId)
+                |> List.map renderStoryComment
+
         renderStory : ( Int, Story ) -> Html Msg
         renderStory ( id, story ) =
             div [ style <| storyStyle id ]
                 [ h3 [] [ text <| story.name ++ " - " ++ (toString id) ]
                 , div [] [ text story.description ]
                 , div [] [ text story.currentState ]
-                , ul [] []
+                , ul [] (renderStoryComments id)
                 ]
     in
         div []

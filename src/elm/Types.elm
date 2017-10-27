@@ -20,7 +20,9 @@ type alias Story =
 
 
 type alias Comment =
-    { text : String }
+    { text : String
+    , storyId : Int
+    }
 
 
 type PollResult
@@ -51,4 +53,5 @@ type alias RawCommandResult =
     , description : Maybe String
     , currentState : Maybe String
     , text : Maybe String
+    , storyId : Maybe Int
     }
