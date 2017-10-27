@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20760fb3-d21c-4e49-aa94-beb0540049b1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/elm/FixtureStories.elm" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elm/Api.elm" afterPath="$PROJECT_DIR$/src/elm/Api.elm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elm/CommandProcessing.elm" afterPath="$PROJECT_DIR$/src/elm/CommandProcessing.elm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elm/Main.elm" afterPath="$PROJECT_DIR$/src/elm/Main.elm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elm/Types.elm" afterPath="$PROJECT_DIR$/src/elm/Types.elm" />
@@ -21,8 +19,18 @@
       <file leaf-file-name="Main.elm" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/elm/Main.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="159">
+              <caret line="65" column="69" lean-forward="false" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Types.elmo" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/elm-stuff/build-artifacts/0.18.0/moarwick/elm-webpack-starter/1.0.0/Types.elmo">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="68" lean-forward="false" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -31,8 +39,8 @@
       <file leaf-file-name="CommandProcessing.elm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elm/CommandProcessing.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+            <state relative-caret-position="252">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -51,8 +59,8 @@
       <file leaf-file-name="List.elm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/elm-stuff/packages/elm-lang/core/5.1.1/src/List.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="310" column="12" lean-forward="false" selection-start-line="310" selection-start-column="12" selection-end-line="310" selection-end-column="12" />
+            <state relative-caret-position="262">
+              <caret line="288" column="0" lean-forward="false" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -61,8 +69,8 @@
       <file leaf-file-name="Api.elm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elm/Api.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
-              <caret line="105" column="38" lean-forward="false" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
+            <state relative-caret-position="626">
+              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -81,8 +89,8 @@
       <file leaf-file-name="Types.elm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elm/Types.elm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="405">
+              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -97,15 +105,21 @@
       <find>CommandCreateResponse</find>
       <find>commandresult</find>
       <find>apply</find>
-      <find>reverse</find>
       <find>model :</find>
       <find>applyResultToModel</find>
       <find>modelWithVersion</find>
       <find>dicrt</find>
+      <find>styles</find>
+      <find>highlightedStories</find>
+      <find>applyres</find>
+      <find>reverse</find>
+      <find>originalModel</find>
     </findStrings>
     <replaceStrings>
       <replace>PollResult</replace>
+      <replace>highlightedStoryIds</replace>
       <replace>PollResponse</replace>
+      <replace>model</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -120,8 +134,10 @@
         <option value="$PROJECT_DIR$/elm-package.json" />
         <option value="$PROJECT_DIR$/elm-stuff/packages/elm-lang/core/5.1.1/src/List.elm" />
         <option value="$PROJECT_DIR$/src/elm/FixtureStories.elm" />
-        <option value="$PROJECT_DIR$/src/elm/Types.elm" />
         <option value="$PROJECT_DIR$/src/elm/Api.elm" />
+        <option value="$PROJECT_DIR$/elm-stuff/build-artifacts/0.18.0/moarwick/elm-webpack-starter/1.0.0/Main.elmo" />
+        <option value="$PROJECT_DIR$/elm-stuff/build-artifacts/0.18.0/moarwick/elm-webpack-starter/1.0.0/Types.elmo" />
+        <option value="$PROJECT_DIR$/src/elm/Types.elm" />
         <option value="$PROJECT_DIR$/src/elm/CommandProcessing.elm" />
         <option value="$PROJECT_DIR$/src/elm/Main.elm" />
       </list>
@@ -138,7 +154,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1280" />
+    <option name="width" value="2197" />
     <option name="height" value="1345" />
   </component>
   <component name="ProjectView">
@@ -168,6 +184,91 @@
             <path>
               <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
               <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="build-artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="build-artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="0.18.0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="build-artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="0.18.0" type="462c0819:PsiDirectoryNode" />
+              <item name="moarwick" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="build-artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="0.18.0" type="462c0819:PsiDirectoryNode" />
+              <item name="moarwick" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-webpack-starter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="build-artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="0.18.0" type="462c0819:PsiDirectoryNode" />
+              <item name="moarwick" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-webpack-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="1.0.0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-lang" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-lang" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="5.1.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="elm-lang" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="5.1.1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="elm-command-processing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="elm-command-processing" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -191,6 +292,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -215,23 +317,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1509117806456</updated>
-      <workItem from="1509117809551" duration="17758000" />
+      <workItem from="1509117809551" duration="20009000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17758000" />
+    <option name="totallyTimeSpent" value="20009000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="1345" extended-state="0" />
+    <frame x="0" y="22" width="2197" height="1345" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17124394" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09837587" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -266,6 +368,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -315,26 +427,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/elm-stuff/packages/elm-lang/core/5.1.1/src/List.elm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="310" column="12" lean-forward="false" selection-start-line="310" selection-start-column="12" selection-end-line="310" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/elm-package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elm/Api.elm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="105" column="38" lean-forward="false" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -347,22 +443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elm/CommandProcessing.elm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/elm/Types.elm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/elm/FixtureStories.elm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -371,10 +451,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/elm/Api.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="626">
+          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elm-stuff/build-artifacts/0.18.0/moarwick/elm-webpack-starter/1.0.0/Types.elmo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="68" lean-forward="false" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elm/Types.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elm-stuff/build-artifacts/0.18.0/moarwick/elm-webpack-starter/1.0.0/Main.elmo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="78" column="52" lean-forward="false" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elm-stuff/packages/elm-lang/core/5.1.1/src/List.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="288" column="0" lean-forward="false" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elm/CommandProcessing.elm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/elm/Main.elm">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="159">
+          <caret line="65" column="69" lean-forward="false" selection-start-line="65" selection-start-column="69" selection-end-line="65" selection-end-column="69" />
           <folding />
         </state>
       </provider>

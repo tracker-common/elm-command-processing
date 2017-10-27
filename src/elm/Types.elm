@@ -7,6 +7,8 @@ type alias Model =
     { projectVersion : Int
     , stories : Dict Int Story
     , comments : Dict Int Comment
+    , canPoll : Bool
+    , highlightedStoryIds : List Int
     }
 
 

@@ -5,12 +5,12 @@ import Dict exposing (..)
 
 
 applyResultsToModel : Model -> List RawCommandResult -> Model
-applyResultsToModel originalModel rawCommandResults =
-    List.foldl (applyResultToModel) originalModel rawCommandResults
+applyResultsToModel model rawCommandResults =
+    List.foldl (applyResultToModel) model rawCommandResults
 
 
 applyResultToModel : RawCommandResult -> Model -> Model
-applyResultToModel rawCommandResult originalModel =
+applyResultToModel rawCommandResult model =
     case rawCommandResult.kind of
         StoryKind ->
             let
@@ -33,13 +33,18 @@ applyResultToModel rawCommandResult originalModel =
 
                 newStories =
                     rawCommandResult.id
-                        |> Maybe.map (\id -> Dict.insert id (updateStory (Dict.get id originalModel.stories)) originalModel.stories)
-                        |> Maybe.withDefault originalModel.stories
+                        |> Maybe.map (\id -> Dict.insert id (updateStory (Dict.get id model.stories)) model.stories)
+                        |> Maybe.withDefault model.stories
+
+                newHighlightedList =
+                    rawCommandResult.id
+                        |> Maybe.map (\id -> List.append model.highlightedStoryIds [ id ])
+                        |> Maybe.withDefault model.highlightedStoryIds
             in
-                { originalModel | stories = newStories }
+                { model | stories = newStories, highlightedStoryIds = newHighlightedList }
 
         CommentKind ->
-            originalModel
+            model
 
         UnknownKind ->
-            originalModel
+            model

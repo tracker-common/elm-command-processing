@@ -37,6 +37,8 @@ model =
     { projectVersion = 0
     , stories = Dict.empty
     , comments = Dict.empty
+    , canPoll = True
+    , highlightedStoryIds = []
     }
 
 
@@ -61,7 +63,7 @@ update msg model =
                 thing =
                     Debug.log "I polled" 1
             in
-                ( model, Http.send (PollResponse) <| fetchCommandsCmd model.projectVersion )
+                ( { model | canPoll = False, highlightedStoryIds = [] }, Http.send (PollResponse) <| fetchCommandsCmd model.projectVersion )
 
         PollResponse result ->
             case result of
@@ -84,14 +86,14 @@ update msg model =
                         updatedModel =
                             CommandProcessing.applyResultsToModel model allResults
                     in
-                        ( { updatedModel | projectVersion = projectVersion }, Cmd.none )
+                        ( { updatedModel | projectVersion = projectVersion, canPoll = True }, Cmd.none )
 
                 Err string ->
                     let
                         foo =
                             (Debug.log "Error" string)
                     in
-                        ( model, Cmd.none )
+                        ( { model | canPoll = True }, Cmd.none )
 
 
 
@@ -101,16 +103,23 @@ update msg model =
 view : Model -> Html Msg
 view model =
     let
+        storyStyle id =
+            if List.member id model.highlightedStoryIds then
+                [ ( "background-color", "yellow" ) ]
+            else
+                []
+
         renderStory : ( Int, Story ) -> Html Msg
         renderStory ( id, story ) =
-            div []
-                [ h1 [] [ text <| story.name ++ " - " ++ (toString id) ]
+            div [ style <| storyStyle id ]
+                [ h3 [] [ text <| story.name ++ " - " ++ (toString id) ]
                 , div [] [ text story.description ]
                 , div [] [ text story.currentState ]
+                , ul [] []
                 ]
     in
         div []
-            [ button [ onClick PollRequest ] [ text "Poll" ]
+            [ button [ onClick PollRequest, disabled <| not model.canPoll ] [ text "Poll" ]
             , div [] <|
                 List.map
                     (renderStory)
