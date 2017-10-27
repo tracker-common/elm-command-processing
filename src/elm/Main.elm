@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Types exposing (..)
 import Api exposing (..)
 import Http exposing (..)
+import FixtureStories
 
 
 -- APP
@@ -38,8 +39,8 @@ type alias Model =
 
 model : Model
 model =
-    { stories = [ { name = "My story, morning glory" }, { name = "It was the best of times..." } ]
-    , projectVersion = 300
+    { stories = FixtureStories.stories
+    , projectVersion = 299
     }
 
 
@@ -98,7 +99,10 @@ view model =
     let
         renderStory : Story -> Html Msg
         renderStory story =
-            div [] [ text story.name ]
+            div []
+                [ h1 [] [ text <| story.name ++ " - " ++ (toString story.id) ]
+                , div [] [ text story.description ]
+                ]
     in
         div []
             [ button [ onClick PollRequest ] [ text "Poll" ]

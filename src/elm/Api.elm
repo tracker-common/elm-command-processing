@@ -6,17 +6,8 @@ import Json.Decode.Extra as Decode exposing ((|:))
 import Types exposing (..)
 
 
-type CommandResult
-    = Executed
-    | Failed
-    | Ineffectual
-    | Current
-    | Stale
-    | TooStale
-
-
 type alias CommandCreateResponse =
-    { result : CommandResult
+    { result : PollResult
     , staleCommands : List Command
     }
 
@@ -48,13 +39,13 @@ commandCreateResponseDecoder : Decode.Decoder CommandCreateResponse
 commandCreateResponseDecoder =
     Decode.field "data" <|
         Decode.succeed CommandCreateResponse
-            |: (Decode.field "result" Decode.string |> Decode.andThen toCommandResult)
+            |: (Decode.field "result" Decode.string |> Decode.andThen toPollResult)
             |: (Decode.field "stale_commands" commandsDecoder)
 
 
-toCommandResult : String -> Decode.Decoder CommandResult
-toCommandResult commandResult =
-    case String.toLower commandResult of
+toPollResult : String -> Decode.Decoder PollResult
+toPollResult pollResult =
+    case String.toLower pollResult of
         "executed" ->
             Decode.succeed Executed
 
@@ -74,7 +65,7 @@ toCommandResult commandResult =
             Decode.succeed TooStale
 
         _ ->
-            Decode.fail <| "Badly formed command_create_response.result. Received:" ++ commandResult
+            Decode.fail <| "Badly formed command_create_response.result. Received:" ++ pollResult
 
 
 commandsDecoder : Decode.Decoder (List Command)
@@ -86,3 +77,25 @@ commandDecoder : Decode.Decoder Command
 commandDecoder =
     Decode.succeed Command
         |: (Decode.at [ "project", "version" ] Decode.int)
+        |: (Decode.field "results" resultsDecoder)
+
+
+resultsDecoder : Decode.Decoder (List CommandResult)
+resultsDecoder =
+    Decode.list resultDecoder
+
+
+resultDecoder : Decode.Decoder CommandResult
+resultDecoder =
+    Decode.succeed CommandResult
+        |: (Decode.field "type" Decode.string |> Decode.andThen toCommandResultKind)
+
+
+toCommandResultKind : String -> Decode.Decoder CommandResultKind
+toCommandResultKind commandResultKind =
+    case String.toLower commandResultKind of
+        "story" ->
+            Decode.succeed StoryKind
+
+        _ ->
+            Decode.succeed UnknownKind
