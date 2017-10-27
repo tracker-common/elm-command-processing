@@ -89,8 +89,11 @@ resultDecoder : Decode.Decoder RawCommandResult
 resultDecoder =
     Decode.succeed RawCommandResult
         |: (Decode.field "type" Decode.string |> Decode.andThen toCommandResultKind)
+        |: (Decode.maybe (Decode.field "id" Decode.int))
         |: (Decode.maybe (Decode.field "name" Decode.string))
         |: (Decode.maybe (Decode.field "description" Decode.string))
+        |: (Decode.maybe (Decode.field "current_state" Decode.string))
+        |: (Decode.maybe (Decode.field "text" Decode.string))
 
 
 toCommandResultKind : String -> Decode.Decoder CommandResultKind
@@ -98,6 +101,9 @@ toCommandResultKind commandResultKind =
     case String.toLower commandResultKind of
         "story" ->
             Decode.succeed StoryKind
+
+        "comment" ->
+            Decode.succeed CommentKind
 
         _ ->
             Decode.succeed UnknownKind

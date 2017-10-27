@@ -4,15 +4,21 @@ import Dict exposing (..)
 
 
 type alias Model =
-    { stories : Dict Int Story
-    , projectVersion : Int
+    { projectVersion : Int
+    , stories : Dict Int Story
+    , comments : Dict Int Comment
     }
 
 
 type alias Story =
     { name : String
     , description : String
+    , currentState : String
     }
+
+
+type alias Comment =
+    { text : String }
 
 
 type PollResult
@@ -32,11 +38,15 @@ type alias Command =
 
 type CommandResultKind
     = StoryKind
+    | CommentKind
     | UnknownKind
 
 
 type alias RawCommandResult =
     { kind : CommandResultKind
+    , id : Maybe Int
     , name : Maybe String
     , description : Maybe String
+    , currentState : Maybe String
+    , text : Maybe String
     }

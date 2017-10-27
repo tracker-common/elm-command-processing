@@ -6,7 +6,6 @@ import Html.Events exposing (onClick)
 import Types exposing (..)
 import Api exposing (..)
 import Http exposing (..)
-import FixtureStories
 import CommandProcessing
 import Dict exposing (..)
 
@@ -35,8 +34,9 @@ subscriptions model =
 
 model : Model
 model =
-    { stories = FixtureStories.stories
-    , projectVersion = 0
+    { projectVersion = 0
+    , stories = Dict.empty
+    , comments = Dict.empty
     }
 
 
@@ -75,18 +75,16 @@ update msg model =
                                 |> List.head
                                 |> Maybe.map (.projectVersion)
                                 |> Maybe.withDefault model.projectVersion
-
-                        modelWithVersion =
-                            { model | projectVersion = projectVersion }
+                                |> Debug.log "$$$$$$$$$$ project version"
 
                         allResults =
                             commandCreateResponse.staleCommands
                                 |> List.concatMap (\command -> command.results)
 
                         updatedModel =
-                            CommandProcessing.applyResultsToModel modelWithVersion allResults
+                            CommandProcessing.applyResultsToModel model allResults
                     in
-                        ( updatedModel, Cmd.none )
+                        ( { updatedModel | projectVersion = projectVersion }, Cmd.none )
 
                 Err string ->
                     let
@@ -108,6 +106,7 @@ view model =
             div []
                 [ h1 [] [ text <| story.name ++ " - " ++ (toString id) ]
                 , div [] [ text story.description ]
+                , div [] [ text story.currentState ]
                 ]
     in
         div []
