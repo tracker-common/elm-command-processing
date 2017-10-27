@@ -80,28 +80,35 @@ commandDecoder =
         |: (Decode.field "results" resultsDecoder)
 
 
-resultsDecoder : Decode.Decoder (List RawCommandResult)
+resultsDecoder : Decode.Decoder (List CommandResultKind)
 resultsDecoder =
     Decode.list resultDecoder
 
 
-resultDecoder : Decode.Decoder RawCommandResult
+resultDecoder : Decode.Decoder CommandResultKind
 resultDecoder =
-    Decode.succeed RawCommandResult
-        |: (Decode.field "type" Decode.string |> Decode.andThen toCommandResultKind)
+    (Decode.field "type" Decode.string |> Decode.andThen toCommandResultKind)
+
+
+storyUpdateDecoder : Decode.Decoder StoryUpdate
+storyUpdateDecoder =
+    Decode.succeed StoryKind <| StoryKind<|
         |: (Decode.maybe (Decode.field "id" Decode.int))
         |: (Decode.maybe (Decode.field "name" Decode.string))
         |: (Decode.maybe (Decode.field "description" Decode.string))
         |: (Decode.maybe (Decode.field "current_state" Decode.string))
-        |: (Decode.maybe (Decode.field "text" Decode.string))
-        |: (Decode.maybe (Decode.field "story_id" Decode.int))
+
+
+
+--  |: (Decode.maybe (Decode.field "text" Decode.string))
+--        |: (Decode.maybe (Decode.field "story_id" Decode.int))
 
 
 toCommandResultKind : String -> Decode.Decoder CommandResultKind
 toCommandResultKind commandResultKind =
     case String.toLower commandResultKind of
         "story" ->
-            Decode.succeed StoryKind
+            storyUpdateDecoder
 
         "comment" ->
             Decode.succeed CommentKind

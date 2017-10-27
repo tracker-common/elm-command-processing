@@ -4,52 +4,51 @@ import Types exposing (..)
 import Dict exposing (..)
 
 
-applyResultsToModel : Model -> List RawCommandResult -> Model
-applyResultsToModel model rawCommandResults =
-    List.foldl (applyResultToModel) model rawCommandResults
+applyResultsToModel : Model -> List CommandResultKind -> Model
+applyResultsToModel model commandResultKinds =
+    List.foldl (applyResultToModel) model commandResultKinds
 
 
-applyResultToModel : RawCommandResult -> Model -> Model
-applyResultToModel rawCommandResult model =
-    case rawCommandResult.kind of
-        StoryKind ->
+applyResultToModel : CommandResultKind -> Model -> Model
+applyResultToModel commandResultKind model =
+    case commandResultKind of
+        StoryKind storyUpdate ->
             let
-                updateStory : RawCommandResult -> Maybe Story -> Story
-                updateStory rawCommandResult maybeStory =
+                updateStory : StoryUpdate -> Maybe Story -> Story
+                updateStory storyUpdate maybeStory =
                     maybeStory
                         |> Maybe.withDefault { name = "", description = "", currentState = "" }
-                        |> (\story -> { story | name = Maybe.withDefault story.name rawCommandResult.name })
-                        |> (\story -> { story | description = Maybe.withDefault story.description rawCommandResult.description })
-                        |> (\story -> { story | currentState = Maybe.withDefault story.currentState rawCommandResult.currentState })
+                        |> (\story -> { story | name = Maybe.withDefault story.name storyUpdate.name })
+                        |> (\story -> { story | description = Maybe.withDefault story.description storyUpdate.description })
+                        |> (\story -> { story | currentState = Maybe.withDefault story.currentState storyUpdate.currentState })
+
+                newDict =
+                    storyUpdate.id
+                        |> Maybe.map (\id -> Dict.insert id (updateStory storyUpdate (Dict.get id model.stories)) model.stories)
+                        |> Maybe.withDefault model.stories
             in
                 { model
-                    | stories = newDict rawCommandResult (updateStory) model.stories
-                    , highlightedStoryIds = newHighlightedList rawCommandResult.id model.highlightedStoryIds
+                    | stories = newDict
+                    , highlightedStoryIds = newHighlightedList storyUpdate.id model.highlightedStoryIds
                 }
 
         CommentKind ->
-            let
-                updateComment : RawCommandResult -> Maybe Comment -> Comment
-                updateComment rawCommandResult maybeComment =
-                    maybeComment
-                        |> Maybe.withDefault { text = "", storyId = 0 }
-                        |> (\comment -> { comment | text = Maybe.withDefault comment.text rawCommandResult.text })
-                        |> (\comment -> { comment | storyId = Maybe.withDefault comment.storyId rawCommandResult.storyId })
-            in
-                { model
-                    | comments = newDict rawCommandResult (updateComment) model.comments
-                    , highlightedStoryIds = newHighlightedList rawCommandResult.storyId model.highlightedStoryIds
-                }
-
-        UnknownKind ->
             model
 
-
-newDict : RawCommandResult -> (RawCommandResult -> Maybe a -> a) -> Dict Int a -> Dict Int a
-newDict rawCommandResult func dict =
-    rawCommandResult.id
-        |> Maybe.map (\id -> Dict.insert id (func rawCommandResult (Dict.get id dict)) dict)
-        |> Maybe.withDefault dict
+        --            let
+        --                updateComment : RawCommandResult -> Maybe Comment -> Comment
+        --                updateComment rawCommandResult maybeComment =
+        --                    maybeComment
+        --                        |> Maybe.withDefault { text = "", storyId = 0 }
+        --                        |> (\comment -> { comment | text = Maybe.withDefault comment.text rawCommandResult.text })
+        --                        |> (\comment -> { comment | storyId = Maybe.withDefault comment.storyId rawCommandResult.storyId })
+        --            in
+        --                { model
+        --                    | comments = newDict rawCommandResult (updateComment) model.comments
+        --                    , highlightedStoryIds = newHighlightedList rawCommandResult.storyId model.highlightedStoryIds
+        --                }
+        UnknownKind ->
+            model
 
 
 newHighlightedList : Maybe Int -> List Int -> List Int

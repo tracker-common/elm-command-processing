@@ -36,22 +36,19 @@ type PollResult
 
 type alias Command =
     { projectVersion : Int
-    , results : List RawCommandResult
+    , results : List CommandResultKind
     }
 
 
 type CommandResultKind
-    = StoryKind
+    = StoryKind StoryUpdate
     | CommentKind
     | UnknownKind
 
 
-type alias RawCommandResult =
-    { kind : CommandResultKind
-    , id : Maybe Int
+type alias StoryUpdate =
+    { id : Maybe Int
     , name : Maybe String
     , description : Maybe String
     , currentState : Maybe String
-    , text : Maybe String
-    , storyId : Maybe Int
     }
