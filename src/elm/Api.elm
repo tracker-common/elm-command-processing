@@ -80,15 +80,17 @@ commandDecoder =
         |: (Decode.field "results" resultsDecoder)
 
 
-resultsDecoder : Decode.Decoder (List CommandResult)
+resultsDecoder : Decode.Decoder (List RawCommandResult)
 resultsDecoder =
     Decode.list resultDecoder
 
 
-resultDecoder : Decode.Decoder CommandResult
+resultDecoder : Decode.Decoder RawCommandResult
 resultDecoder =
-    Decode.succeed CommandResult
+    Decode.succeed RawCommandResult
         |: (Decode.field "type" Decode.string |> Decode.andThen toCommandResultKind)
+        |: (Decode.maybe (Decode.field "name" Decode.string))
+        |: (Decode.maybe (Decode.field "description" Decode.string))
 
 
 toCommandResultKind : String -> Decode.Decoder CommandResultKind
