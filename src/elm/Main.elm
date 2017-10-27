@@ -3,32 +3,44 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-
-
--- component import example
-
-import Components.Hello exposing (hello)
+import Types exposing (..)
+import Api exposing (..)
+import Http exposing (..)
 
 
 -- APP
 
 
-main : Program Never Int Msg
+main : Program Never Model Msg
 main =
-    Html.beginnerProgram { model = model, view = view, update = update }
+    Html.program
+        { init = ( model, Cmd.none )
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
 
 
 
 -- MODEL
 
 
+subscriptions : model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
 type alias Model =
-    Int
+    { stories : List Story
+    , projectVersion : Int
+    }
 
 
-model : number
+model : Model
 model =
-    0
+    { stories = [ { name = "My story, morning glory" }, { name = "It was the best of times..." } ]
+    , projectVersion = 0
+    }
 
 
 
@@ -37,38 +49,61 @@ model =
 
 type Msg
     = NoOp
-    | Increment
+    | PollRequest
+    | PollResponse (Result Error CommandCreateResponse)
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            model
+            ( model, Cmd.none )
 
-        Increment ->
-            model + 1
+        PollRequest ->
+            let
+                thing =
+                    Debug.log "I polled" 1
+            in
+                ( model, Http.send (PollResponse) <| fetchCommandsCmd model.projectVersion )
+
+        PollResponse result ->
+            case result of
+                Ok commandCreateResponse ->
+                    let
+                        thing =
+                            Debug.log "RESULT!!!!!!!!!!" commandCreateResponse
+
+                        --                        projectVersion = case commandCreateResponse.result
+                        --                            Stale ->
+                        --                            -- get version from command list
+                        --                            _ ->
+                        --                             model.projectVersion
+                    in
+                        ( model, Cmd.none )
+
+                Err string ->
+                    let
+                        foo =
+                            (Debug.log "Error" string)
+                    in
+                        ( model, Cmd.none )
 
 
 
 -- VIEW
--- Html is defined as: elem [ attribs ][ children ]
--- CSS can be applied via class names or inline style attrib
 
 
 view : Model -> Html Msg
 view model =
-    div []
-
-
-
--- CSS STYLES
-
-
-styles : { img : List ( String, String ) }
-styles =
-    { img =
-        [ ( "width", "33%" )
-        , ( "border", "4px solid #337AB7" )
-        ]
-    }
+    let
+        renderStory : Story -> Html Msg
+        renderStory story =
+            div [] [ text story.name ]
+    in
+        div []
+            [ button [ onClick PollRequest ] [ text "Poll" ]
+            , div [] <|
+                List.map
+                    (renderStory)
+                    model.stories
+            ]
