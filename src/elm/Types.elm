@@ -1,9 +1,16 @@
 module Types exposing (..)
 
+import Dict exposing (..)
+
+
+type alias Model =
+    { stories : Dict Int Story
+    , projectVersion : Int
+    }
+
 
 type alias Story =
-    { id : Int
-    , name : String
+    { name : String
     , description : String
     }
 

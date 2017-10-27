@@ -7,6 +7,8 @@ import Types exposing (..)
 import Api exposing (..)
 import Http exposing (..)
 import FixtureStories
+import CommandProcessing
+import Dict exposing (..)
 
 
 -- APP
@@ -31,16 +33,10 @@ subscriptions model =
     Sub.none
 
 
-type alias Model =
-    { stories : List Story
-    , projectVersion : Int
-    }
-
-
 model : Model
 model =
     { stories = FixtureStories.stories
-    , projectVersion = 299
+    , projectVersion = 0
     }
 
 
@@ -79,8 +75,18 @@ update msg model =
                                 |> List.head
                                 |> Maybe.map (.projectVersion)
                                 |> Maybe.withDefault model.projectVersion
+
+                        modelWithVersion =
+                            { model | projectVersion = projectVersion }
+
+                        allResults =
+                            commandCreateResponse.staleCommands
+                                |> List.concatMap (\command -> command.results)
+
+                        updatedModel =
+                            CommandProcessing.applyResultsToModel modelWithVersion allResults
                     in
-                        ( { model | projectVersion = projectVersion }, Cmd.none )
+                        ( updatedModel, Cmd.none )
 
                 Err string ->
                     let
@@ -97,10 +103,10 @@ update msg model =
 view : Model -> Html Msg
 view model =
     let
-        renderStory : Story -> Html Msg
-        renderStory story =
+        renderStory : ( Int, Story ) -> Html Msg
+        renderStory ( id, story ) =
             div []
-                [ h1 [] [ text <| story.name ++ " - " ++ (toString story.id) ]
+                [ h1 [] [ text <| story.name ++ " - " ++ (toString id) ]
                 , div [] [ text story.description ]
                 ]
     in
@@ -109,5 +115,5 @@ view model =
             , div [] <|
                 List.map
                     (renderStory)
-                    model.stories
+                    (Dict.toList model.stories)
             ]
